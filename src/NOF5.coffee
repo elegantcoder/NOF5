@@ -1,3 +1,4 @@
+path = require('path')
 argv = require('optimist')
   .usage('Usage: $0 --server [server url] --wsport [websocket port to use] --webport [js port to use] -w [watch directory] -w [watch directory]')
   .demand(['w'])
@@ -16,8 +17,7 @@ webport = argv.webport
 watch = require('nodewatch')
 io = require('socket.io').listen(wsport)
 
-
-watch.add(require('path').resolve(watchPath)) for watchPath in watchPaths
+watch.add(path.resolve(watchPath)) for watchPath in watchPaths
 
 watchEventListen = false;
 _socket = null
@@ -37,7 +37,7 @@ fs = require 'fs'
 server = http.createServer (req, res) ->
     if req.url == '/'
       res.writeHead 200, { 'Content-Type': 'text/html' }
-      res.write '<h1>NOF5 works!</h1>'
+      res.write '<html><head><title>NOF5 Webserver</title></head><body><h1>NOF5 works!</h1></body></html>'
 
     else if req.url == '/NOF5-client.js'
       res.writeHead 200, { 'Content-Type': 'text/javascript' }
