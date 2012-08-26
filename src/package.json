@@ -1,0 +1,11 @@
+{
+  "name" : "NOF5",
+  "description" : "Watching Directory and Auto-Refresh with Socket.io. NO need to press F5",
+  "version" : "0.1",
+  "author" : "Constantine Kim <elegantcoder@gmail.com>",
+  "main" : "NOF5.js",
+  "dependencies" : {
+    'optimist': '>= 0.3.4'
+    'nodewatch': '>= 0.1.0'
+  }
+}
