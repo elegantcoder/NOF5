@@ -29,28 +29,28 @@ io.sockets.on('connection', (socket) ->
       console.log('emit reload')
       _socket.emit('reload')
     )
-    watchEventListen = true
-);
+  watchEventListen = true
+)
 
 http =  require 'http'
 fs = require 'fs'
 server = http.createServer (req, res) ->
-    if req.url == '/'
-      res.writeHead 200, { 'Content-Type': 'text/html' }
-      res.write '<html><head><title>NOF5 Webserver</title></head><body><h1>NOF5 works!</h1></body></html>'
+  if req.url is '/'
+    res.writeHead 200, { 'Content-Type': 'text/html' }
+    res.write '<html><head><title>NOF5 Webserver</title></head><body><h1>NOF5 works!</h1></body></html>'
 
-    else if req.url == '/NOF5-client.js'
-      res.writeHead 200, { 'Content-Type': 'text/javascript' }
-      js = fs.readFileSync('NOF5-client.js').toString()
-      js = js.replace('#{wsport}', wsport)
-      js = js.replace('#{server}', argv.server)
-      res.write js
+  else if req.url is '/NOF5-client.js'
+    res.writeHead 200, { 'Content-Type': 'text/javascript' }
+    js = fs.readFileSync('NOF5-client.js').toString()
+    js = js.replace('#{wsport}', wsport)
+    js = js.replace('#{server}', argv.server)
+    res.write js
 
-    else
-      res.writeHead 404, { 'Content-Type': 'text/plain' }
-      res.write 'Not Found'
+  else
+    res.writeHead 404, { 'Content-Type': 'text/plain' }
+    res.write 'Not Found'
 
-    res.end()
+  res.end()
   server.listen webport
 
 scriptUrl = "#{argv.server}:#{argv.webport}/NOF5-client.js"
